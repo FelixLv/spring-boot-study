@@ -2,18 +2,20 @@ package org.felix.spring.boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
  * Created by Intellij IDEA
  * User: felix
- * Date: 16/12/22
- * Time: 下午4:54
+ * Date: 16/12/23
+ * Time: 下午1:32
  */
 @Configuration
 @EnableAutoConfiguration
-public class Application {
+@ComponentScan
+public class ApplicationWithBusinessException {
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, "--server.port=8196");
+        SpringApplication.run(ApplicationWithBusinessException.class,args);
     }
 }
