@@ -19,7 +19,7 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v1.4.2.RELEASE)
 
-2016-12-23 11:33:32.897  INFO 46716 --- [           main] org.felix.spring.boot.Application        : Starting Applicationwith PID 46716 
+2016-12-23 11:33:32.897  INFO 46716 --- [           main] org.felix.spring.boot.Application        : Starting Applicationwith PID 46716
 2016-12-23 11:33:35.251  INFO 46716 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
 2016-12-23 11:33:35.268  INFO 46716 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.6
 2016-12-23 11:33:37.305  INFO 46716 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
@@ -63,71 +63,6 @@ Verify the connector's configuration, identify and stop any process that's liste
 * `ValidationExceptionFailureAnalyzer`
 
 你可以从`spring-boot-1.4.2-RELEASE.jar`里的`META-INF/spring.factories`找到上述几个`FailureAnalyzer`
-
-### 自定义FailureAnalyzer
-
-#### Step1:自定义异常
-```java
-public class BusinessException extends RuntimeException {
-
-    public BusinessException(String msg){
-        super(msg);
-    }
-}
-```
-#### Step2:自定义FailureAnalyzer
-```java
-public class BusinessFailureAnalyzer extends AbstractFailureAnalyzer<BusinessException> {
-    BusinessFailureAnalyzer(){
-
-    }
-
-    @Override
-    protected FailureAnalysis analyze(Throwable throwable, BusinessException e) {
-        return new FailureAnalysis("business description","business action",e);
-    }
-}
-```
-#### Step3:配置FailureAnalyzer
-```
-org.springframework.boot.diagnostics.FailureAnalyzer=\
-org.felix.spring.boot.analyzer.BusinessFailureAnalyzer
-```
-#### Step4:定义一个Service被Spring初始化抛出该异常
-```java
-@Component
-public class EchoService implements InitializingBean{
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        throw new BusinessException("business exception");
-    }
-}
-```
-#### Step5:构建一个Spring Application
-```java
-@Configuration
-@EnableAutoConfiguration
-@ComponentScan
-public class ApplicationWithBusinessException {
-    public static void main(String[] args) {
-   SpringApplication.run(ApplicationWithBusinessException.class,args);
-    }
-}
-```
-#### Step6:运行Spring Application
-```
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-business description
-
-Action:
-
-business action
-```
 
 ### FailureAnalyzer小结
 * `Spring Application`默认是开启`FailureAnalyzer`的，并没有提供关闭的配置
