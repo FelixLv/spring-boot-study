@@ -89,7 +89,6 @@ org.springframework.context.ApplicationListener=com.example.project.MyListener
 4. `ApplicationReadyEvent`:启动完成发送该事件，整个应用程序处于就绪状态
 5. `ApplicationFailedEvent`:启动时异常发送该事件
 
-
 ## WebEnvironment
 ## 获取应用程序启动时的参数
 如果你使用`SpringApplication.run(Application.class,args)`来启动一个`Spring Application`，然后你又希望你在自己定义的`Bean`里用到这些参数，那么你可以通过注入一个`ApplicationArguments`来获取，`ApplicationArguments`提供了各种各样的方式来获取参数。
@@ -138,7 +137,14 @@ public class MyBean implements CommandLineRunner {
 * 实现接口`org.springframework.core.Ordered`
 * 使用注解`org.springframework.core.annotation.Order`
 
-## 应用退出
+## 优雅退出
+
+任何一个`Spring Application`都会向`JVM`注册一个`Shutdown Hook`以便`ApplicationContext`在`Spring Application`退出的时候能够优雅的关闭。
+
+* 实现接口`DisposableBean`
+* 使用注解`@PreDestroy`
+* 实现接口`org.springframework.boot.ExitCodeGenerator`，在`Spring Application`退出的时候能返回自己定义的`exit code`
+
 ## Admin功能
 
 
