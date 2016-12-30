@@ -70,8 +70,36 @@ Verify the connector's configuration, identify and stop any process that's liste
 * 如果你没有为异常定义自己的`FailureAnalyzer`,你仍然可以通过`--debug`来打印诊断信息，比如`java -jar myproject-0.0.1-SNAPSHOT.jar --debug`
 
 ## 自定义Banner
+
+
+
 ## 自定义SpringApplication
+
+如果你不喜欢默认的`Spring Application`，你当然可以自己去定义一个`Spring Application`，比如关闭`Banner`。
+
+```
+public static void main(String[] args) {
+    SpringApplication app = new SpringApplication(MySpringConfiguration.class);
+    app.setBannerMode(Banner.Mode.OFF);
+    app.run(args);
+}
+```
+
+`Spring Boot`也提供了基于配置文件`application.properties`的形式来构建一个`Spring Application`。具体的用法可以参考[Externalized Configuration](http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/boot-features-external-config.html)
+
+
 ## 流式构建的API(Fluent builder API)
+
+`Spring Boot`提供了`SpringApplicationBuilder`以流式的形式来构建`Spring Application`。
+
+```java
+new SpringApplicationBuilder()
+        .sources(Parent.class)
+        .child(Application.class)
+        .bannerMode(Banner.Mode.OFF)
+        .run(args);
+```
+
 ## 应用事件和监听器
 
 除了通常的Spring框架的事件，比如`ContextRefreshedEvent`，一个`SpringApplication`还会发送一些额外的应用事件。
@@ -90,6 +118,9 @@ org.springframework.context.ApplicationListener=com.example.project.MyListener
 5. `ApplicationFailedEvent`:启动时异常发送该事件
 
 ## WebEnvironment
+
+`Spring Appication`默认是开启`Web Environment`，你可以通过`setWebEnvironment(false)`来关闭它，比如正在使用`SpringApplication`做`JUnit`测试。
+
 ## 获取应用程序启动时的参数
 如果你使用`SpringApplication.run(Application.class,args)`来启动一个`Spring Application`，然后你又希望你在自己定义的`Bean`里用到这些参数，那么你可以通过注入一个`ApplicationArguments`来获取，`ApplicationArguments`提供了各种各样的方式来获取参数。
 
