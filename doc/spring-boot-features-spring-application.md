@@ -72,10 +72,72 @@ Verify the connector's configuration, identify and stop any process that's liste
 ## 自定义Banner
 ## 自定义SpringApplication
 ## 流式构建的API(Fluent builder API)
-## 事件与监听
+## 应用事件和监听器
+
+除了通常的Spring框架的事件，比如`ContextRefreshedEvent`，一个`SpringApplication`还会发送一些额外的应用事件。
+
+> 你不能使用`@Bean`去注册一个监听器去监听在`ApplicationContext`被创建之前触发的那些事件上。你可以通过`SpringApplication.addListeners(…​)`或者`SpringApplicationBuilder.listeners(…​)`来注册。
+> 如果你想自动注册这些监听器不管应用以何种方式启动，你可以在你的工程下创建一个文件`META-INF/spring.factories`，然后引用以下配置
+```
+org.springframework.context.ApplicationListener=com.example.project.MyListener
+```
+
+当你的应用程序运行时，应用事件按下列顺序发送：
+1. `ApplicationStartedEvent`:启动时发送该事件
+2. `ApplicationEnvironmentPreparedEvent`:`Environment`加载完成，但是上下文未创建发送该事件
+3. `ApplicationPreparedEvent`:上下文加载完成，但是spring bean未加载完成发送该事件
+4. `ApplicationReadyEvent`:启动完成发送该事件，整个应用程序处于就绪状态
+5. `ApplicationFailedEvent`:启动时异常发送该事件
+
+
 ## WebEnvironment
-## 获取Spring Application运行时的参数
-## 自定义Runner
+## 获取应用程序启动时的参数
+如果你使用`SpringApplication.run(Application.class,args)`来启动一个`Spring Application`，然后你又希望你在自己定义的`Bean`里用到这些参数，那么你可以通过注入一个`ApplicationArguments`来获取，`ApplicationArguments`提供了各种各样的方式来获取参数。
+
+```java
+import org.springframework.boot.*
+import org.springframework.beans.factory.annotation.*
+import org.springframework.stereotype.*
+
+@Component
+public class MyBean {
+
+    @Autowired
+    public MyBean(ApplicationArguments args) {
+        boolean debug = args.containsOption("debug");
+        List<String> files = args.getNonOptionArgs();
+        // if run with "--debug logfile.txt" debug=true, files=["logfile.txt"]
+    }
+
+}
+```
+
+当然，`Spring Boot`会根据`Environment`来注册一个`CommandLinePropertySource`，你可以通过`@Value`来获取
+## 使用`ApplicationRunner`或者`CommandLineRunner`
+
+如果你想在`Spring Application`启动时运行自己的一些代码，你可以自己定义一个`Bean`，实现接口`ApplicationRunner`或者`CommandLineRunner`。`Spring Application`会在`SpringApplication.run(…​)`之前去调用他们。
+
+`ApplicationRunner`和`CommandLineRunner`的区别在于`ApplicationRunner`使用了`String... args`作为参数，`ApplicationRunner`使用了`ApplicationArguments`作为参数。
+
+```java
+import org.springframework.boot.*
+import org.springframework.stereotype.*
+
+@Component
+public class MyBean implements CommandLineRunner {
+
+    public void run(String... args) {
+        // Do something...
+    }
+
+}
+```
+
+如果你定义了多个`Runner`，然后又希望他们是有序去执行的，两种方式供你选择
+
+* 实现接口`org.springframework.core.Ordered`
+* 使用注解`org.springframework.core.annotation.Order`
+
 ## 应用退出
 ## Admin功能
 
