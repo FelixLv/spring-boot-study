@@ -69,8 +69,19 @@ http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-b
 
 ## JTA
 
+[`JTA`](https://zh.wikipedia.org/wiki/Java%E4%BA%8B%E5%8A%A1API)英文全称叫`Java Transaction API`，中文全称叫`Java事务API`，是一个Java企业版的应用程序接口，在Java环境中，允许完成跨越多个XA资源的分布式事务。JTA是在[Java社区](https://www.jcp.org/en/home/index)过程下制定的规范，编号[JSR 907](https://jcp.org/en/jsr/detail?id=907)。
+
+目前开源的`JTA`实现有以下几个：
+
+* [`narayana`](http://narayana.io/)：`narayana`是`jboss`下的一款开源的`JTA`
+* [`bitronix`](https://github.com/bitronix/btm)：`bitronix`是一款开源的`JTA`，不过目前已没人维护
+* [`atomikos`](https://www.atomikos.com/)：`atomikos`目前提供了商业版本的维护，但其社区版仍然是开源的。
+
 | Name | Description | Pom  |
 | --- | --- | --- |
+|`spring-boot-starter-jta-narayana`|集成了`JTA transactions`和`narayana`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-jta-narayana/pom.xml)|
+|`spring-boot-starter-jta-bitronix`|集成了`JTA transactions`和`bitronix`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-jta-bitronix/pom.xml)|
+|`spring-boot-starter-jta-atomikos`|集成了`JTA transactions`和`atomikos`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-jta-atomikos/pom.xml)|
 
 ## Template Engine
 
