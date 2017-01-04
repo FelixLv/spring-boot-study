@@ -15,8 +15,17 @@ http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-b
 
 ## Servlet Container
 
+这篇[文章](http://www.programcreek.com/2013/04/what-is-servlet-container/)解释了什么是一个`Servlet Container`。目前`Servlet Container`有很多，详细可以参考[维基百科](https://en.wikipedia.org/wiki/Web_container#List_of_Servlet_containers)。`spring-boot`集成了以下几款开源的`Servlet Container`：
+
+* [`tomcat`](http://tomcat.apache.org/tomcat-8.0-doc/index.html)：`tomcat`是`spring-boot`默认集成的`Servlet Container`。
+* [`undertow`](http://undertow.io/index.html)：`undertow`是一款轻量级、灵活的、可嵌入的、并支持`Web Socket`协议的开源容器。
+* [`jetty`](https://eclipse.org/jetty/)：`jetty`是一款由`eclipse`维护的开源容器，目前使用也很广泛。
+
 | Name | Description | Pom  |
 | --- | --- | --- |
+|`spring-boot-starter-tomcat`|是`spring-boot-starter-web`默认集成的容器|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-tomcat/pom.xml)|
+|`spring-boot-starter-undertow`|集成了`undertow`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-undertow/pom.xml)|
+|`spring-boot-starter-jetty`|集成了`jetty`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-jetty/pom.xml)|
 
 ## Logging
 
@@ -35,8 +44,21 @@ http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-b
 
 ## Rest
 
+> `Rest`是`representational state transfer`的缩写，意思是表达性状态转换。`Rest`是一种架构风格，它包含了一个分布式超文本系统中对于组件、连接器和数据的约束。[想了解更多关于Rest点击此处](https://www.ibm.com/developerworks/cn/java/j-lo-SpringHATEOAS/)
+> `HATEOAS`是`Hypermedia as the engine of application state`的缩写，意思是超媒体即应用状态引擎。`HATEOAS`是`Rest`架构风格中最复杂的约束，也是构建成熟`Rest`服务的核心。
+
+`JAX-RS`是`Java API for RESTful Web Services`的缩写，是一个Java编程语言的应用程序接口，支持按照`Rest`架构风格创建Web服务。目前已知的`JAX-RS`有4种，`Jersey`是其中的一种实现，由`Sun`开发的产品级质量的`JAX-RS`的参考实现。当然，`Jersey`也支持`HATEOAS`约束。
+
+`spring-hateoas`和`spring-data-rest`是`spring`旗下的两个子项目，`spring-data-rest`包含了`spring-hateoas`，虽然`spring-hateoas`实现了`HATEOAS`，但是`spring-data-rest`并没有真正的实现`JAX-RS`规范。
+
+`spring-boot`提供了以下几种来快速构建`Rest`服务：
+
 | Name | Description | Pom  |
 | --- | --- | --- |
+|`spring-boot-starter-web`|默认是支持`RESTful`的|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-web/pom.xml)|
+|`spring-boot-starter-hateoas`|集成了`spring-mvc`和`spring-hateoas`|[Pom](https://github.com/spring-projects/spring-boot/tree/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-hateoas/pom.xml)|
+|`spring-boot-starter-jersey`|集成了`spring-mvc`和`Jersey`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-hateoas/pom.xml)|
+|`spring-boot-starter-data-rest`|集成了`spring-data-rest`和`spring-mvc`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-data-rest/pom.xml)|
 
 ## Socia API
 
@@ -121,6 +143,13 @@ http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-b
 | Name | Description | Pom  |
 | --- | --- | --- |
 
+## 参考
 
+* [spring-HATEOAS-vs-spring-data-rest](http://stackoverflow.com/questions/19514131/spring-hateoas-versus-spring-data-rest)
+* [spring-rest-service-vs-jersey-rest-service](http://stackoverflow.com/questions/26824423/what-is-the-difference-among-spring-rest-service-and-jersey-rest-service-and-spr)
+* [Web Service是什么？](http://www.ruanyifeng.com/blog/2009/08/what_is_web_service.html)
+* [使用Spring HATEOAS开发REST服务](https://www.ibm.com/developerworks/cn/java/j-lo-SpringHATEOAS/)
+* [JAX-RS](https://zh.wikipedia.org/wiki/JAX-RS)
+* [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS)
 
 
