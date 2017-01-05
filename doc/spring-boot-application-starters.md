@@ -27,21 +27,6 @@ http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-b
 |`spring-boot-starter-undertow`|集成了`undertow`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-undertow/pom.xml)|
 |`spring-boot-starter-jetty`|集成了`jetty`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-jetty/pom.xml)|
 
-## Logging
-
-| Name | Description | Pom  |
-| --- | --- | --- |
-
-## Cache
-
-| Name | Description | Pom  |
-| --- | --- | --- |
-
-## Production Starters
-
-| Name | Description | Pom  |
-| --- | --- | --- |
-
 ## Rest
 
 > `Rest`是`representational state transfer`的缩写，意思是表达性状态转换。`Rest`是一种架构风格，它包含了一个分布式超文本系统中对于组件、连接器和数据的约束。[想了解更多关于Rest点击此处](https://www.ibm.com/developerworks/cn/java/j-lo-SpringHATEOAS/)
@@ -118,10 +103,30 @@ http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-b
 |`spring-boot-starter-freemarker`|集成了`spring-boot-starter-web`和`freemarker`模板引擎|[Pom](https://github.com/spring-projects/spring-boot/tree/master/spring-boot-starters/spring-boot-starter-freemarker/pom.xml)|
 |`spring-boot-starter-velocity`|集成了`spring-boot-starter-web`和`velocity`模板引擎|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-velocity/pom.xml)|
 
-## Security
+## Logging
+
+目前主流的Java日志框架有`log4j`，`logback`和`log4j2`。`spring-boot`集成了`logback`和`log4j2`。
 
 | Name | Description | Pom  |
 | --- | --- | --- |
+|`spring-boot-starter-logging`|集成`logback`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-logging/pom.xml)|
+|`spring-boot-starter-log4j2`|集成`log4j2`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-log4j2/pom.xml)|
+
+## Test
+
+目前主流的Java测试框架有`JUnit`，`Hamcrest`和`Mockito`。`spring-boot`集成了这三者。
+
+| Name | Description | Pom  |
+| --- | --- | --- |
+|`spring-boot-starter-test`|集成了`JUnit`，`Hamcrest`和`Mockito`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-test/pom.xml)|
+
+## Security
+
+`spring-security`是`spring`旗下的一个子项目，支持授权和认证，可以防止`session fixation`(会话固定)、`clickjacking`(点击劫持)、cross site request forgery(CSRF)(跨站请求伪造)等攻击。`spring-boot`集成了`spring-security`。
+
+| Name | Description | Pom  |
+| --- | --- | --- |
+|`spring-boot-starter-security`|集成了`spring-security`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-security/pom.xml)|
 
 ## MQ
 
@@ -138,7 +143,7 @@ http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-b
 | Name | Description | Pom  |
 | --- | --- | --- |
 
-## Test
+## Production Starters
 
 | Name | Description | Pom  |
 | --- | --- | --- |
@@ -151,5 +156,8 @@ http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-b
 * [使用Spring HATEOAS开发REST服务](https://www.ibm.com/developerworks/cn/java/j-lo-SpringHATEOAS/)
 * [JAX-RS](https://zh.wikipedia.org/wiki/JAX-RS)
 * [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS)
+* [点击劫持](https://zh.wikipedia.org/wiki/%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81)
+* [Session fixation](https://en.wikipedia.org/wiki/Session_fixation)
+* [跨站请求伪造](https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0)
 
 
