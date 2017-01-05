@@ -1,4 +1,4 @@
-# spring-boot-application-starters介绍
+# 引言
 
 本文主要介绍`spring-boot`官方提供的常用的`starters`，对应的`spring-boot`版本均为`1.4.2.RELEASE`，官方文档地址为[http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-build-systems.html#using-boot-starter](http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-build-systems.html#using-boot-starter)，官方提供的`starters`均以`spring-boot-starter-`开头，第三方提供的`starters`均以`acme-spring-boot-starter`开头，当然你也可以自己定义`starters`。
 
