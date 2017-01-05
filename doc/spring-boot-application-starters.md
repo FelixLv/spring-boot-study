@@ -1,6 +1,6 @@
-# Spring Boot application starters
+# spring-boot-application-starters介绍
 
-http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-build-systems.html#using-boot-starter
+本文主要介绍`spring-boot`官方提供的常用的`starters`，对应的`spring-boot`版本均为`1.4.2.RELEASE`，官方文档地址为[http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-build-systems.html#using-boot-starter](http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-build-systems.html#using-boot-starter)，官方提供的`starters`均以`spring-boot-starter-`开头，第三方提供的`starters`均以`acme-spring-boot-starter`开头，当然你也可以自己定义`starters`。
 
 ## Database
 
@@ -75,8 +75,7 @@ http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-b
 |`spring-boot-starter-social-twitter`|集成了`spring-boot-starter-web`和`spring-social-twitter`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-social-twitter/pom.xml)|
 
 ## JTA
-
-[`JTA`](https://zh.wikipedia.org/wiki/Java%E4%BA%8B%E5%8A%A1API)英文全称叫`Java Transaction API`，中文全称叫`Java事务API`，是一个Java企业版的应用程序接口，在Java环境中，允许完成跨越多个XA资源的分布式事务。JTA是在[Java社区](https://www.jcp.org/en/home/index)过程下制定的规范，编号[JSR 907](https://jcp.org/en/jsr/detail?id=907)。
+`JTA`是`Java Transaction API`的缩写，意思是`Java事务API`，是一个Java企业版的应用程序接口，在Java环境中，允许完成跨越多个XA资源的分布式事务。JTA是在Java社区过程下制定的规范。
 
 目前开源的`JTA`实现有以下几个：
 
@@ -130,18 +129,26 @@ http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-b
 
 ## MQ
 
+`JMS`是`Java Message Service`的缩写，意思是Java消息服务，是一个Java服务中关于面向消息中间件的API，用于在两个应用程序之间或分布式系统中发送消息，进行异步通信。`JMS`规范包括两种消息模式，**点对点**和**发布者/订阅者**，支持**同步**和**异步**的消息处理，支持**面向事件**的方法接收消息。目前主流的开源实现有`Apache ActiveMQ`和`Kafka`。
+
+`AMQP`是`Advanced Message Queuing Protocol`的缩写，意思是高级消息队列协议，是一个异步消息传递所使用的应用层协议规范。作为线路层协议，而不是API（例如`JMS`），AMQP客户端能够无视消息的来源任意发送和接受信息。目前主流的开源实现有`RabbitMQ`。
+
+`JMS`和`AMQP`的对比：
+
+|     | JMS | AMQP|
+| --- | --- | --- |
+| 定义 | JAVA API| Protocol|
+| 跨语言| 否 | 是 |
+| 跨平台| 否 | 是 |
+| 消息模型| one to one and publish/subscriber |direct, fanout, topic, headers|
+| 消息类型|text,map,byte,stream,object|byte|
+
+`spring-boot`集成了`ActiveMQ`和`RabbitMQ`。
+
 | Name | Description | Pom  |
 | --- | --- | --- |
-
-## Web Scoket
-
-| Name | Description | Pom  |
-| --- | --- | --- |
-
-## Web Services
-
-| Name | Description | Pom  |
-| --- | --- | --- |
+|`spring-boot-starter-activemq`|集成`ActiveMQ`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-activemq/pom.xml)|
+|`spring-boot-starter-amqp`|集成`RabbitMQ`|[Pom](https://github.com/spring-projects/spring-boot/blob/v1.4.2.RELEASE/spring-boot-starters/spring-boot-starter-amqp/pom.xml)|
 
 ## Production Starters
 
@@ -159,5 +166,11 @@ http://docs.spring.io/spring-boot/docs/1.4.2.RELEASE/reference/html/using-boot-b
 * [点击劫持](https://zh.wikipedia.org/wiki/%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81)
 * [Session fixation](https://en.wikipedia.org/wiki/Session_fixation)
 * [跨站请求伪造](https://zh.wikipedia.org/wiki/%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0)
+* [WebSocket](https://zh.wikipedia.org/wiki/WebSocket)
+* [WebService](https://en.wikipedia.org/wiki/Web_service)
+* [JMS](https://zh.wikipedia.org/wiki/Java%E6%B6%88%E6%81%AF%E6%9C%8D%E5%8A%A1)
+* [AMQP](https://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol)
+* [WebContainer](https://en.wikipedia.org/wiki/Web_container)
+* [jms-vs-amqp](https://dzone.com/articles/jms-vs-rabbitmq)
 
 
